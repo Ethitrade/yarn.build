@@ -17,22 +17,20 @@ import {
   Filename,
 } from "@yarnpkg/fslib";
 
-import { Command, Usage } from "clipanion";
+import { Command, Option, Usage } from "clipanion";
 import path from "path";
 
 // a compatible js file that reexports the file from pkg.main
 export default class Bundler extends BaseCommand {
-  @Command.Boolean(`--json`)
-  json = false;
+  static paths = [[`bundle`]];
 
-  @Command.String(`-o,--output-directory`)
-  outputDirectory?: string;
+  json = Option.Boolean(`--json`, false);
 
-  @Command.String(`-a,--archive-name`)
-  archiveName: Filename = `bundle.zip` as Filename;
+  outputDirectory = Option.String(`-o,--output-directory`);
 
-  @Command.Array(`--exclude`)
-  exclude: Array<PortablePath> = [];
+  archiveName = Option.String(`-a,--archive-name`, `bundle.zip`) as Filename;
+
+  exclude = Option.Array(`--exclude`, []) as Array<PortablePath>;
 
   static usage: Usage = Command.Usage({
     category: `Build commands`,
@@ -125,7 +123,6 @@ export default class Bundler extends BaseCommand {
     });
   }
 
-  @Command.Path(`bundle`)
   async execute() {
     // Get a tmpDir to work in
     return await xfs.mktempPromise(async (tmpDir) => {

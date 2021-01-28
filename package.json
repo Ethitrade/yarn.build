@@ -40,6 +40,34 @@
     "node": ">=13.10.0"
   },
   "dependencies": {
-    "@yarnpkg/pnpify": "^2.4.0"
+    "@yarnpkg/pnpify": "yarnpkg/berry#workspace=@yarnpkg/pnpify"
+  },
+  "resolutions": {
+    "@yarnpkg/cli": "yarnpkg/berry#workspace=@yarnpkg/cli",
+    "@yarnpkg/core": "yarnpkg/berry#workspace=@yarnpkg/core",
+    "@yarnpkg/esbuild-plugin-pnp": "yarnpkg/berry#workspace=@yarnpkg/esbuild-plugin-pnp",
+    "@yarnpkg/fslib": "yarnpkg/berry#workspace=@yarnpkg/fslib",
+    "@yarnpkg/json-proxy": "yarnpkg/berry#workspace=@yarnpkg/json-proxy",
+    "@yarnpkg/libzip": "yarnpkg/berry#workspace=@yarnpkg/libzip",
+    "@yarnpkg/parsers": "yarnpkg/berry#workspace=@yarnpkg/parsers",
+    "@yarnpkg/plugin-compat": "yarnpkg/berry#workspace=@yarnpkg/plugin-compat",
+    "@yarnpkg/plugin-dlx": "yarnpkg/berry#workspace=@yarnpkg/plugin-dlx",
+    "@yarnpkg/plugin-essentials": "yarnpkg/berry#workspace=@yarnpkg/plugin-essentials",
+    "@yarnpkg/plugin-file": "yarnpkg/berry#workspace=@yarnpkg/plugin-file",
+    "@yarnpkg/plugin-git": "yarnpkg/berry#workspace=@yarnpkg/plugin-git",
+    "@yarnpkg/plugin-github": "yarnpkg/berry#workspace=@yarnpkg/plugin-github",
+    "@yarnpkg/plugin-http": "yarnpkg/berry#workspace=@yarnpkg/plugin-http",
+    "@yarnpkg/plugin-init": "yarnpkg/berry#workspace=@yarnpkg/plugin-init",
+    "@yarnpkg/plugin-link": "yarnpkg/berry#workspace=@yarnpkg/plugin-link",
+    "@yarnpkg/plugin-node-modules": "yarnpkg/berry#workspace=@yarnpkg/plugin-node-modules",
+    "@yarnpkg/plugin-npm": "yarnpkg/berry#workspace=@yarnpkg/plugin-npm",
+    "@yarnpkg/plugin-npm-cli": "yarnpkg/berry#workspace=@yarnpkg/plugin-npm-cli",
+    "@yarnpkg/plugin-pack": "yarnpkg/berry#workspace=@yarnpkg/plugin-pack",
+    "@yarnpkg/plugin-patch": "yarnpkg/berry#workspace=@yarnpkg/plugin-patch",
+    "@yarnpkg/plugin-pnp": "yarnpkg/berry#workspace=@yarnpkg/plugin-pnp",
+    "@yarnpkg/plugin-stage": "yarnpkg/berry#workspace=@yarnpkg/plugin-stage",
+    "@yarnpkg/pnp": "yarnpkg/berry#workspace=@yarnpkg/pnp",
+    "@yarnpkg/pnpify": "yarnpkg/berry#workspace=@yarnpkg/pnpify",
+    "@yarnpkg/shell": "yarnpkg/berry#workspace=@yarnpkg/shell"
   }
 }

@@ -7,7 +7,7 @@ import {
   miscUtils,
 } from "@yarnpkg/core";
 import { PortablePath } from "@yarnpkg/fslib";
-import { Command, Usage } from "clipanion";
+import { Command, Option, Usage } from "clipanion";
 import path from "path";
 
 import { EventEmitter } from "events";
@@ -17,29 +17,25 @@ import RunSupervisor, { RunSupervisorReporterEvents } from "../supervisor";
 import { addTargets } from "../supervisor/workspace";
 
 export default class Build extends BaseCommand {
-  @Command.Boolean(`--json`)
-  json = false;
+  static paths = [[`build`]];
 
-  @Command.String(`-c,--build-command`)
-  buildCommand = "build";
+  json = Option.Boolean(`--json`, false);
 
-  @Command.Boolean(`-p,--parallel`)
-  parallel = true;
+  buildCommand = Option.String(`-c,--build-command`, "build", {
+    arity: 1,
+  });
 
-  @Command.Boolean(`-i,--interlaced`)
-  interlaced = false;
+  parallel = Option.Boolean(`-p,--parallel`, true);
 
-  @Command.Boolean(`-v,--verbose`)
-  verbose = false;
+  interlaced = Option.Boolean(`-i,--interlaced`, false);
 
-  @Command.Boolean(`-d,--dry-run`)
-  dryRun = false;
+  verbose = Option.Boolean(`-v,--verbose`, false);
 
-  @Command.Boolean(`--ignore-cache`)
-  ignoreBuildCache = false;
+  dryRun = Option.Boolean(`-d,--dry-run`, false);
 
-  @Command.Rest()
-  public buildTarget: string[] = [];
+  ignoreBuildCache = Option.Boolean(`--ignore-cache`, false);
+
+  public buildTarget = Option.Rest();
 
   static usage: Usage = Command.Usage({
     category: `Build commands`,
@@ -67,14 +63,15 @@ export default class Build extends BaseCommand {
   // Keep track of what is built, and if it needs to be rebuilt
   buildLog: { [key: string]: { hash: string | undefined } } = {};
 
-  @Command.Path(`build`)
   async execute() {
     const configuration = await Configuration.find(
       this.context.cwd,
       this.context.plugins
     );
 
-    const pluginConfiguration: YarnBuildConfiguration = await GetPluginConfiguration(configuration);
+    const pluginConfiguration: YarnBuildConfiguration = await GetPluginConfiguration(
+      configuration
+    );
 
     const report = await StreamReport.start(
       {
