@@ -42,7 +42,7 @@ jobs:
       - name: Update release
         run: |
           export TAGNAME=$(echo "${{ github.ref }}" | sed 's|refs/tags/||g')
-          sed -i'' "3s|.*| to = \"https://github.com/ojkelly/yarn.build/releases/download/$TAGNAME/plugin-build.js\"|" netlify.toml
+          sed -i'' "3s|.*| to = \"https://github.com/Ethitrade/yarn.build/releases/download/$TAGNAME/plugin-build.js\"|" netlify.toml
 
       # Commit new version
       - name: Create Pull Request
@@ -55,13 +55,13 @@ jobs:
           signoff: false
           branch: update-release-version
           delete-branch: true
-          title: 'release: Update release version to  ${{ github.ref }}'
+          title: "release: Update release version to  ${{ github.ref }}"
           base: trunk
           labels: |
             report
             automated pr
-          assignees: ojkelly
-          reviewers: ojkelly
+          assignees: tim-ethitrade
+          reviewers: tim-ethitrade
           team-reviewers: |
             owners
             maintainers
